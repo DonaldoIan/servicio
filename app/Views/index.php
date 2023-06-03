@@ -1,1 +1,1 @@
-esto es el inicio de la aplicacion 
+esto es el inicio
