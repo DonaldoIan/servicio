@@ -8,4 +8,7 @@ class Home extends BaseController
     {
         return view('index');
     }
+    public function menu(){
+        return view('menu');
+    }
 }
