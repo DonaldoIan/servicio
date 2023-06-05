@@ -25,13 +25,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="control-asistencias.html">Control de Asistencias</a>
+            <a class="nav-link" href="<?=base_url();?>asistencia">Control de Asistencias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="trabajadores.html">Trabajadores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="huellas-digitales.html">Huellas Digitales</a>
+            <a class="nav-link" href="<?=base_url();?>usuario"> Registrar Trabajadores</a>
           </li>
         </ul>
       </div>

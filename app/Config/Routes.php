@@ -32,6 +32,12 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('menu', 'Home::menu');
 
+$routes->get('usuario', 'TrabajadorC::usuario');
+$routes->post('guardarusuario', 'TrabajadorC::guardarusuario');
+
+$routes->get('trabajador', 'TrabajadorC::trabajador');
+$routes->post('guardar', 'TrabajadorC::guardar');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
