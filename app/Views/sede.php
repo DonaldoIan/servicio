@@ -41,29 +41,19 @@
         <h5 class="card-title">Registro del trabajador:</h5>
         <p class="card-text">
 
-        <form method="post" action="<?=site_url('/guardar'); ?>" enctype="multipart/form-data">
+        <form method="post" action="<?=site_url('/guardarsede'); ?>" enctype="multipart/form-data">
     <br>
       <div class="form-group">
-        <label for="nombre">Nombre(s):</label>
-        <input id="nombre" value="<?=old('nombre')?>" class="form-control" type="text" name="nombre" placeholder="Nombre(s).">
+        <label for="sede">Nombre de la sede:</label>
+        <input id="sede" value="<?=old('sede')?>" class="form-control" type="text" name="sede" placeholder="Nombre de la sede.">
       </div>
-    <br>
+      <br>
       <div class="form-group">
-        <label for="paterno">Apellido Paterno:</label>
-        <input id="paterno" value="<?=old('paterno')?>" class="form-control" type="text" name="paterno" placeholder="Apellido Paterno.">
+        <label for="id">Abreviatura de la sede:</label>
+        <input id="id" value="<?=old('id')?>" class="form-control" type="text" name="id" placeholder="Abreviatura de la sede.">
       </div>
-    <br> 
-    <br>
-      <div class="form-group">
-        <label for="materno">Apellido Materno:</label>
-        <input id="materno" value="<?=old('materno')?>" class="form-control" type="text" name="materno" placeholder="Apellido Materno.">
-      </div>
-    <br> 
-    <div class="form-group">
-        <label for="puesto">Puesto:</label>
-        <input id="puesto" value="<?=old('puesto')?>" class="form-control" type="text" name="puesto" placeholder="Puesto.">
-      </div>
-    <br> 
+    
+
       <button class="btn btn-success" type="submit">Guardar</button>
       </form>
       </p>

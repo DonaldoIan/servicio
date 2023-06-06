@@ -35,8 +35,14 @@ $routes->get('menu', 'Home::menu');
 $routes->get('usuario', 'TrabajadorC::usuario');
 $routes->post('guardarusuario', 'TrabajadorC::guardarusuario');
 
+$routes->get('dactilar', 'TrabajadorC::dactilar');
+$routes->post('guardardactilar', 'TrabajadorC::guardardactilar');
+
 $routes->get('trabajador', 'TrabajadorC::trabajador');
 $routes->post('guardar', 'TrabajadorC::guardar');
+
+$routes->get('sede', 'TrabajadorC::sede');
+$routes->post('guardarsede', 'TrabajadorC::guardarsede');
 
 /*
  * --------------------------------------------------------------------
@@ -54,3 +60,6 @@ $routes->post('guardar', 'TrabajadorC::guardar');
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+
+
+
