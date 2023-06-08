@@ -3,9 +3,10 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
+
 use App\Models\TrabajadorM;
 use App\Models\UsuarioM;
-use App\Models\EscuelaM;
+use App\Models\Sede;
 use App\Models\DactilarM;
 
 
@@ -140,7 +141,7 @@ public function guardar(){
     }
     public function guardarsede(){
 
-        $Trabajador = new EscuelaM();
+        $Trabajador = new Sede();
 
         $validacion = $this->validate([
             'sede' => 'required',
@@ -161,7 +162,7 @@ public function guardar(){
 
         $Trabajador->insert($subir);
 
-        return redirect()->to(base_url('/sede'));
+        return redirect()->to(base_url('/menu'));
 
     }
 }
