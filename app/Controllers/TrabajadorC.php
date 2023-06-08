@@ -140,12 +140,11 @@ public function guardar(){
         return view('sede');
     }
     public function guardarsede(){
-
         $Trabajador = new Sede();
 
         $validacion = $this->validate([
-            'sede' => 'required',
-            'id' => 'required',
+            'sede'=> 'required',
+            'id' => 'required'
         ]);
 
         if (!$validacion) {
@@ -156,13 +155,13 @@ public function guardar(){
         }
 
         $subir = [
-            'id' => $this->request->getVar('id'),
-            'nombre' => $this->request->getVar('sede'),
+            'id' => $this->request->getVar('sede'),
+            'nombre'=> $this->request->getVar('id'),
         ];
 
         $Trabajador->insert($subir);
 
-        return redirect()->to(base_url('/menu'));
+        return redirect()->to(base_url('/dactilar'));
 
     }
 }
