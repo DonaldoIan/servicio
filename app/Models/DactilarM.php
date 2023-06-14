@@ -6,6 +6,6 @@ use CodeIgniter\Model;
 class DactilarM extends Model{
     protected $table      = 'huella';
     // Uncomment below if you want add primary key
-     protected $primaryKey = 'id_huella';
-     protected $allowedFields = ['id_huella','huella',];
+     protected $primaryKey = 'id';
+     protected $allowedFields = ['id_huella','huella'];
 }

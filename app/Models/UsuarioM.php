@@ -6,5 +6,5 @@ use CodeIgniter\Model;
 class UsuarioM extends Model{
     protected $table      = 'usuario';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id','contraseña','id_rol'];
+    protected $allowedFields = ['id','usuario','contraseña','id_rol'];
 }

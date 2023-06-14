@@ -25,15 +25,14 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<?=base_url();?>asistencia">Control de Asistencias</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="<?=base_url();?>usuario"> Registrar Trabajadores</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+  
 
   <!-- Contenido de la página -->
   
