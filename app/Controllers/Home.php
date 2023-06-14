@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\Controller;
+use App\Models\TrabajadorM;
+use App\Models\AsistenciaM;
 
 class Home extends BaseController
 {
@@ -8,7 +11,16 @@ class Home extends BaseController
     {
         return view('index');
     }
-    public function menu(){
-        return view('menu');
-    }
+    public function menu()
+{
+    $Trabajador = new TrabajadorM();
+    $asistencia = new AsistenciaM();
+
+    $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
+    $datos['asistencias'] = $asistencia->orderBy('id', 'ASC')->findAll();
+
+    return view('menu', $datos);
+}
+
+
 }
