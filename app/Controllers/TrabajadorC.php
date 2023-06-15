@@ -211,6 +211,28 @@ private function obtenerUltimoIDHuella()
 
 
 
+public function borrar($id_pertenencia=null){
+
+    $trabajadador = new TrabajadorM();
+    $trabajadador->where('id',$id_pertenencia)->delete($id_pertenencia);
+
+
+    $dactilar = new DactilarM();
+    $dactilar->where('id',$id_pertenencia)->delete($id_pertenencia);
+
+    $usuario = new UsuarioM();
+    $usuario->where('id',$id_pertenencia)->delete($id_pertenencia);
+
+    $sede = new Sede();
+    $sede->where('id_sede',$id_pertenencia)->delete($id_pertenencia);
+
+    $asistenciaModel = new AsistenciaM();
+    $asistenciaModel->where('id_pertenencia',$id_pertenencia)->delete($id_pertenencia);
+    
+    return $this->response->redirect(base_url('menu'));
+}
+
+
 
 
 

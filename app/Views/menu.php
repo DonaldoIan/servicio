@@ -33,7 +33,7 @@
 
   <!-- Contenido de la página -->
 <br>
-<center><h3>Uruarios Registrados:</h3></center>
+<center><h3>Usuarios Registrados:</h3></center>
   
 
   <?php if ($trabajadores && $asistencias): ?>
@@ -65,8 +65,8 @@
       <div class="card-footer">
       <h5 class="card-title">Acciones</h5>
         <center>
-          <a name="" id="" class="btn btn-primary" href="#" role="button">Editar</a>
-          <a name="" id="" class="btn btn-primary" href="#" role="button">Borrar</a>
+            <a href="<?=base_url('editar/'.$asistencias[$index]['id_pertenencia']); ?>" class="btn btn-info" type="button">Editar</a>
+            <a href="<?=base_url('borrar/'.$asistencias[$index]['id_pertenencia']); ?>" class="btn btn-danger" type="button">Borrar</a>
         </center>
       </div>
     </div>

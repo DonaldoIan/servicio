@@ -44,6 +44,9 @@ $routes->post('guardar', 'TrabajadorC::guardar');
 $routes->get('sede', 'TrabajadorC::sede');
 $routes->post('guardarsede', 'TrabajadorC::guardarsede');
 
+$routes->get('borrar/(:num)', 'TrabajadorC::borrar/$1');
+$routes->get('editar/(:num)', 'TrabajadorC::editar/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
