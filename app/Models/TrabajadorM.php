@@ -10,5 +10,8 @@ class TrabajadorM extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['nombre', 'apellido_pat', 'apellido_mat', 'puesto'];
 
-    
+    public function getNombreById($id)
+    {
+        return $this->select('nombre')->where('id', $id)->get()->getRow('nombre');
+    }
 }

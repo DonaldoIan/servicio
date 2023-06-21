@@ -25,6 +25,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#" onclick="ocultarFormulario()">Menú</a>
+      <a href="<?= base_url('tasistencia');?>" class="nav-link btn btn-primary" type="button">Tabla de asistencias</a>
       <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#modalParaEditar">Registrar Trabajadores</button>
       <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#modalParaAsistencias">Tomar asistencia</button>
     </div>
@@ -111,37 +112,39 @@
           <h4 class="modal-title">Asistencias</h4>
         </div>
         <div class="modal-body">
-          <form method="post" action="<?= site_url('/guardarAsistencia'); ?>" enctype="multipart/form-data">
-            <div class="form-group">
-              <label for="buscar">Buscar trabajador</label>
-              <input id="buscar" value="<?= old('buscar') ?>" class="form-control" type="text" name="buscar" placeholder="Buscar trabajador">
-            </div>
-            <div class="container">
-              <table class="table table-light">
-                <thead class="thead-light">
-                  <tr>
+        <form method="post" action="<?= site_url('/guardarAsistencia'); ?>" enctype="multipart/form-data">
+    
+    <div class="form-group">
+        <label for="buscar">Buscar trabajador</label>
+        <input id="buscar" value="<?= old('buscar') ?>" class="form-control" type="text" name="buscar" placeholder="Buscar trabajador">
+    </div>
+    <div class="container">
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
                     <th>Trabajador</th>
                     <th>Puesto</th>
                     <th>Asistencia</th>
-                  </tr>
-                </thead>
-                <tbody id="tablaUsuarios">
-                  <?php if (!empty($trabajadores)): ?>
+                </tr>
+            </thead>
+            <tbody id="tablaUsuarios">
+                <?php if (!empty($trabajadores)): ?>
                     <?php foreach ($trabajadores as $lib): ?>
-                      <tr>
-                        <td><?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?></td>
-                        <td><?= $lib['puesto']; ?></td>
-                        <td>
-                          <a href="<?= base_url('asistencia/' . $lib['id']); ?>" class="btn btn-info" type="button">Tomar asistencia</a>
-                        </td>
-                      </tr>
+                        <tr>
+                            <td><?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?></td>
+                            <td><?= $lib['puesto']; ?></td>
+                            <td>
+                                <a href="<?= base_url('huella/' . $lib['id']); ?>" class="btn btn-info" type="button">Tomar asistencia</a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
-                  <?php endif; ?>
-                </tbody>
-              </table>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            </div>
-          </form>
+                <?php endif; ?>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>
+</form>
+
         </div>
       </div>
     </div>
