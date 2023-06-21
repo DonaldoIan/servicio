@@ -33,6 +33,8 @@ $routes->get('/', 'Home::index');
 $routes->get('menu', 'Home::menu');
 
 $routes->post('guardar', 'TrabajadorC::guardar');
+$routes->get('borrar/(:num)', 'TrabajadorC::borrar/$1');
+
 
 
 

@@ -43,8 +43,7 @@
             <p class="card-text">
               <p>Puesto: <?= $lib['puesto']; ?></p>
               <p>Nombre completo: <?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?> <?= $lib['apellido_mat']; ?></p>
-              <p>Huella: Registrada</p>
-              <p></p>
+              <a href="<?=base_url('borrar/'.$lib['id']); ?>" class="btn btn-danger" type="button">Borrar</a>
             </div>
           </div>
       </section>

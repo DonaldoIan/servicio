@@ -46,4 +46,15 @@ class TrabajadorC extends Controller
     // Redirigir y refrescar la página
     return redirect()->to(site_url('menu'))->with('status', 'Datos guardados exitosamente');
   }
+  public function borrar($id=null){
+
+    $Usuario = new TrabajadorM();
+    $sede = new Sede();
+
+    $Usuario->where('id',$id)->delete($id);
+    $sede->where('id',$id)->delete($id);
+
+    return $this->response->redirect(base_url('menu'));
+
+  }
 }
