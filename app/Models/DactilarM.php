@@ -7,5 +7,5 @@ class DactilarM extends Model{
     protected $table      = 'huella';
     // Uncomment below if you want add primary key
      protected $primaryKey = 'id';
-     protected $allowedFields = ['id_huella','huella'];
+     protected $allowedFields = ['huella_registro','id_trabajador'];
 }

@@ -14,10 +14,8 @@ class Home extends BaseController
     public function menu()
 {
     $Trabajador = new TrabajadorM();
-    $asistencia = new AsistenciaM();
 
     $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
-    $datos['asistencias'] = $asistencia->orderBy('id', 'ASC')->findAll();
 
     return view('menu', $datos);
 }
