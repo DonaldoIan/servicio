@@ -36,6 +36,7 @@ $routes->post('guardar', 'TrabajadorC::guardar');
 $routes->get('huella/(:num)', 'Home::huella/$1');
 $routes->post('asistencia/(:num)', 'TrabajadorC::asistencia/$1');
 $routes->get('tasistencia', 'Home::tasistencia');
+$routes->get('tusuarios', 'Home::tusuarios');
 
 
 $routes->get('borrar/(:num)', 'TrabajadorC::borrar/$1');
@@ -62,4 +63,3 @@ if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 
 
 
-$routes->get('tasistencia', 'Home::tasistencia');

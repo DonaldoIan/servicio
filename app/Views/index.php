@@ -28,7 +28,7 @@
 			<input type="email" name="email" placeholder="Email" />
 			<input type="password" name="password_user" placeholder="Contraseña" />
 			<br>
-			<button>INGRESAR</button>
+			<a href="<?= base_url('menu');?>" class="nav-link btn btn-primary" type="button">Ingresar</a>
 
 		</form>
 	</div>

@@ -22,18 +22,18 @@
       <thead class="thead-light">
         <tr>
             <th>Trabajador</th>
-            <th>Sede</th>
+            <th>Sede de trabajador</th>
             <th>Fecha</th>
             <th>Hora</th>
             <th>Huella</th>
         </tr>
         </thead>
     <tbody>
-        <tr>
+       
         <?php if (!empty($asistencias)): ?>
     <?php foreach ($asistencias as $lib): ?>
 
-
+      <tr>
     
             <td><?= $lib['id_trabajador']; ?></td>
             <td><?= $lib['id_sede']; ?></td>
@@ -43,10 +43,11 @@
             
 
 
-
+            </tr>
             <?php endforeach; ?>
 <?php endif; ?>
-        </tr>
+        
+        
     </tbody>
     </table>
   </div>

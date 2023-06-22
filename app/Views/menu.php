@@ -25,32 +25,89 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#" onclick="ocultarFormulario()">Menú</a>
-      <a href="<?= base_url('tasistencia');?>" class="nav-link btn btn-primary" type="button">Tabla de asistencias</a>
-      <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#modalParaEditar">Registrar Trabajadores</button>
-      <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#modalParaAsistencias">Tomar asistencia</button>
     </div>
   </nav>
 
   <!-- Contenido de la página -->
-  <br>
-  <center><h3>Trabajadores Registrados:</h3></center>
+  <div class="container">
+      <div class="row row-cols-8">
+          <div class="col">
+            <div class="container">
+              <!--eliminar con margin top (en proceso)-->
+              <br>
+              <br><br><br>
+              <!---->
+              <!--div principal de opciones a elegir (fondo)-->
+              <div id="opciones">
+                <div class="row justify-content-center">
+                  <!--Titulo de esta sección "hola administrador"-->
+                  <div class="col-8" style="margin-top: 10%;">
+                    <h2 id="sub_hola">¡Hola, administrador!</h2>
+                  </div>
+                </div>
 
-  <?php if (!empty($trabajadores)): ?>
-    <?php foreach ($trabajadores as $lib): ?>
-      <section class="container right-align">
-        <div class="card" style="width: 100%;">
-          <div class="card-body">
-            <h5 class="card-title">Trabajador: <?= $lib['nombre']; ?></h5>
-            <p class="card-text">
-              <p>Puesto: <?= $lib['puesto']; ?></p>
-              <p>Nombre completo: <?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?> <?= $lib['apellido_mat']; ?></p>
-              <a href="<?=base_url('borrar/'.$lib['id']); ?>" class="btn btn-danger" type="button">Borrar</a>
+                <!--eliminar a futuro-->
+                <br>
+                <!---->
+
+                <!--subtitulo "que va a hacer hoy"-->
+                <div class="row justify-content-center">
+                  <div class="col-8">
+                    <h4 id="subsub_hola">¿Qué va hacer hoy?</h4>
+                  </div>
+                </div>
+
+                <!--eliminar a futuro-->
+                <br>
+                <br>
+                <!---->
+  
+                <!--primera sección de filas-->
+                <div class="row justify-content-around">
+                  <!--agregar al banco-->
+                  <a href="<?= base_url('tasistencia');?>" class="nav-link btn btn-primary" type="button" style="margin-right: 5px;">Tabla de asistencias</a><br>
+                  <!--visualizar avances-->
+                  <a href="<?= base_url('tusuarios');?>" class="nav-link btn btn-primary" type="button" style="margin-right: 5px;">Usuarios registrados</a>
+                </div>
+                <!--eliminar a futuro-->
+                <br>
+                <!---->
+
+                <!--segunda sección de filas-->
+                <div class="row justify-content-around">
+                  <!--crear evaluación-->
+                  <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#modalParaEditar">Registrar Trabajadores</button><br>
+                  <!--gestionar estudiantes-->
+                  <button class="nav-link btn btn-primary" data-toggle="modal" data-target="#modalParaAsistencias">Tomar asistencia</button>
+                </div>
+                <!--eliminar a futuro-->
+                <br>
+                 
+                
+              </div>
             </div>
           </div>
-      </section>
-      <br>
-    <?php endforeach; ?>
-  <?php endif; ?>
+        <!--imagen de logo principal en pantalla-->
+        <div class="col">
+          <a style="display: flex; justify-content: center; margin-top: 10%;"><img src="<?=base_url()?>public/img/logo.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
 
   <!-- Modal para agregar un nuevo trabajador -->
   <div class="modal fade" id="modalParaEditar" data-backdrop="static" data-keyboard="false">
@@ -74,7 +131,7 @@
               <input id="materno" value="<?= old('materno') ?>" class="form-control" type="text" name="materno" placeholder="Apellido Materno.">
             </div>
             <div class="form-group">
-              <label for="tema">Tema:</label>
+              <label for="tema">Puesto:</label>
               <select id="tema" class="form-control" name="tema">
                 <option>Docente</option>
                 <option>Técnico Académico</option>
@@ -86,11 +143,11 @@
             <div class="form-group">
               <label for="sede">Sede:</label>
               <select id="sede" class="form-control" name="sede">
-                <option>Docente</option>
-                <option>Técnico Académico</option>
-                <option>Administrativo</option>
-                <option>Intendencia</option>
-                <option>Mantenimiento</option>
+                <option>San José Chiapa</option>
+                <option>Ciudad Serdán</option>
+                <option>El Seco</option>
+                <option>Tepeaca</option>
+                <option>Acajete</option>
               </select>
             </div>
             <div class="modal-footer">
