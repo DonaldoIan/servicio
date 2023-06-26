@@ -52,27 +52,10 @@ class Home extends BaseController
     $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
     $datos['sede'] = $sede->orderBy('id', 'ASC')->findAll();
 
-    if (!empty($_GET['id_trabajador'])) {
-        $idTrabajador = $_GET['id_trabajador'];
-        $trabajadorSeleccionado = $Trabajador->obtenerTrabajador($idTrabajador);
-
-        if ($trabajadorSeleccionado) {
-            $datos['trabajadorSeleccionado'] = $trabajadorSeleccionado;
-        }
-    }
 
     return view('tusuarios', $datos);
 }
 
-    public function obtenerTrabajador($id)
-    {
-        $trabajador = $this->find($id); // Suponiendo que tienes un método "find" para buscar un trabajador por su ID
-    
-        if ($trabajador) {
-            return $trabajador;
-        } else {
-            return null; // O puedes lanzar una excepción o manejar el caso de error de alguna otra manera
-        }
-    }
+
     
 }

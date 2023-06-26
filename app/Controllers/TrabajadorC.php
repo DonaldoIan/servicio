@@ -12,24 +12,82 @@ use App\Models\AsistenciaM;
 class TrabajadorC extends Controller
 {
     public function guardar()
+{
+    $Trabajador = new TrabajadorM();
+    $sede = new Sede();
+
+    $validacion = $this->validate([
+        'nombre' => 'required',
+        'paterno' => 'required',
+        'materno' => 'required',
+        'sede' => 'required', 
+    ]);
+
+    if (!$validacion) {
+        $session = session();
+        $session->setFlashdata('sms', 'Todos los campos deben estar llenos.');
+
+        return redirect()->back()->withInput();
+    }
+
+    $subir = [
+        'nombre' => $this->request->getVar('nombre'),
+        'apellido_pat' => $this->request->getVar('paterno'),
+        'apellido_mat' => $this->request->getVar('materno'),
+        'puesto' => $this->request->getVar('tema')
+    ];    
+    $otro = [
+        'sede' => $this->request->getVar('sede')
+    ];  
+
+    $Trabajador->insert($subir);
+    $sede->insert($otro);
+
+    // Redirigir y refrescar la página
+    return redirect()->to(site_url('menu'));
+}
+
+
+
+    public function borrar($id=null)
     {
-        $Trabajador = new TrabajadorM();
+        $Usuario = new TrabajadorM();
         $sede = new Sede();
 
-        $validacion = $this->validate([
-            'nombre' => 'required',
-            'paterno' => 'required',
-            'materno' => 'required',
-            'sede' => 'required', 
-        ]);
+        $Usuario->where('id', $id)->delete($id);
+        $sede->where('id', $id)->delete($id);
 
-        if (!$validacion) {
-            $session = session();
-            $session->setFlashdata('sms', 'Todos los campos deben estar llenos.');
+        return $this->response->redirect(base_url('tusuarios'));
+    }
+    public function editar($id=null){
+
+        $usuarios = new TrabajadorM();
+        $sedeM = new Sede();
+
+        $datos['usuarios']=$usuarios->where('id',$id)->first();
+        $datos['sedeModel']=$sedeM->where('id',$id)->first();
+        
+        return view('editar', $datos);
+    }
+    public function actualizar(){
+
+        $usuarios = new TrabajadorM();
+        $sedeModel = new Sede();
+
+        $id=$this->request->getVar('id');
+        
+        $validacion = $this->validate([
+            'nombre'=>'required',
+            'paterno'=>'required',
+            'materno'=>'required'
+        ]);
+        if(!$validacion){
+            $session=session();
+            $session->setFlashdata('sms','Revise la información.');
 
             return redirect()->back()->withInput();
         }
-
+        
         $subir = [
             'nombre' => $this->request->getVar('nombre'),
             'apellido_pat' => $this->request->getVar('paterno'),
@@ -40,23 +98,13 @@ class TrabajadorC extends Controller
             'sede' => $this->request->getVar('sede')
         ];  
 
-        $Trabajador->insert($subir);
-        $sede->insert($otro);
+        $usuarios->update($id, $subir); // Agrega el ID del trabajador y los datos a actualizar
+        $sedeModel->update($id, $otro); // Agrega el ID de la sede y los datos a actualizar
 
-        // Redirigir y refrescar la página
-        return redirect()->to(site_url('menu'))->with('status', 'Datos guardados exitosamente');
-    }
 
-    public function borrar($id=null)
-    {
-        $Usuario = new TrabajadorM();
-        $sede = new Sede();
-
-        $Usuario->where('id', $id)->delete($id);
-        $sede->where('id', $id)->delete($id);
-
-        return $this->response->redirect(base_url('menu'));
-    }
+        return $this->response->redirect(base_url('/tusuarios'));
+        
+}
 
     public function asistencia($id)
 {
@@ -105,6 +153,7 @@ class TrabajadorC extends Controller
 
     return redirect()->to(base_url('/menu'));
 }
+
 
 
 

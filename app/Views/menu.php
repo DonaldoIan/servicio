@@ -3,6 +3,7 @@
 <head>
   <title>Menú</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     .navbar {
       justify-content: flex-start;
@@ -24,7 +25,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#" onclick="ocultarFormulario()">Menú</a>
+      <a class="navbar-brand" href="<?=base_url('menu');?>">Menú</a>
     </div>
   </nav>
 
@@ -95,20 +96,6 @@
     </div>
   </main>
 
-
-
-
-
-
-
-
-
-
-      
-      
-      
-      
-
   <!-- Modal para agregar un nuevo trabajador -->
   <div class="modal fade" id="modalParaEditar" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
@@ -117,7 +104,7 @@
           <h4 class="modal-title">Editar</h4>
         </div>
         <div class="modal-body">
-        <form method="post" action="<?= site_url('/guardar'); ?>" enctype="multipart/form-data">
+          <form method="post" action="<?= site_url('/guardar'); ?>" enctype="multipart/form-data">
             <div class="form-group">
               <label for="nombre">Nombre(s):</label>
               <input id="nombre" value="<?= old('nombre') ?>" class="form-control" type="text" name="nombre" placeholder="Nombre(s).">
@@ -152,14 +139,14 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button class="btn btn-info" type="submit" onclick="ocultarFormulario()">Guardar</button>
+              <button class="btn btn-info" type="submit" onclick="return mostrarAlerta()">Guardar</button>
+
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-
 
   <!-- Modal para tomar asistencia -->
   <div class="modal fade" id="modalParaAsistencias" data-backdrop="static" data-keyboard="false">
@@ -169,39 +156,35 @@
           <h4 class="modal-title">Asistencias</h4>
         </div>
         <div class="modal-body">
-        <form method="post" action="<?= site_url('/guardarAsistencia'); ?>" enctype="multipart/form-data">
-    
-    <div class="form-group">
-        <label for="buscar">Buscar trabajador</label>
-        <input id="buscar" value="<?= old('buscar') ?>" class="form-control" type="text" name="buscar" placeholder="Buscar trabajador">
-    </div>
-    <div class="container">
-        <table class="table table-light">
-            <thead class="thead-light">
-                <tr>
+            <div class="form-group">
+              <label for="buscar">Buscar trabajador</label>
+              <input id="buscar" value="<?= old('buscar') ?>" class="form-control" type="text" name="buscar" placeholder="Buscar trabajador">
+            </div>
+            <div class="container">
+              <table class="table table-light">
+                <thead class="thead-light">
+                  <tr>
                     <th>Trabajador</th>
                     <th>Puesto</th>
                     <th>Asistencia</th>
-                </tr>
-            </thead>
-            <tbody id="tablaUsuarios">
-                <?php if (!empty($trabajadores)): ?>
+                  </tr>
+                </thead>
+                <tbody id="tablaUsuarios">
+                  <?php if (!empty($trabajadores)): ?>
                     <?php foreach ($trabajadores as $lib): ?>
-                        <tr>
-                            <td><?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?></td>
-                            <td><?= $lib['puesto']; ?></td>
-                            <td>
-                                <a href="<?= base_url('huella/' . $lib['id']); ?>" class="btn btn-info" type="button">Tomar asistencia</a>
-                            </td>
-                        </tr>
+                      <tr>
+                        <td><?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?></td>
+                        <td><?= $lib['puesto']; ?></td>
+                        <td>
+                          <a href="<?= base_url('huella/' . $lib['id']); ?>" class="btn btn-info" type="button">Tomar asistencia</a>
+                        </td>
+                      </tr>
                     <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-    </div>
-</form>
-
+                  <?php endif; ?>
+                </tbody>
+              </table>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
         </div>
       </div>
     </div>
@@ -212,23 +195,53 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script>
-    function ocultarFormulario() {
-      $('#modalParaEditar').modal('hide');
-      refrescarPagina();
-    }
+function ocultarFormulario() {
+  $('#modalParaEditar').modal('hide');
+  refrescarPagina();
+}
 
-    function refrescarPagina() {
-      location.reload();
-    }
+function refrescarPagina() {
+  location.reload();
+  setTimeout(function() {
+    alerta();
+  }, 1000); // Esperar 1 segundo después de recargar la página para mostrar la alerta
+}
 
-    $(document).ready(function() {
-      $('#buscar').on('input', function() {
-        var input = $(this).val().toLowerCase();
-        $('#tablaUsuarios tr').filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(input) > -1)
-        });
-      });
+$(document).ready(function() {
+  $('#buscar').on('input', function() {
+    var input = $(this).val().toLowerCase();
+    $('#tablaUsuarios tr').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(input) > -1)
     });
+  });
+});
+
+
+  function mostrarAlerta() {
+    alerta().then(function(result) {
+      if (result.isConfirmed) {
+        // Enviar los datos al controlador
+        document.getElementById("formulario").submit();
+      }
+    });
+
+    return false; // Evitar el envío automático del formulario
+  }
+
+  function alerta() {
+    return Swal.fire({
+      title: 'Trabajador agregado',
+      icon: 'success',
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+
+
+
+
+
   </script>
 </body>
 </html>
