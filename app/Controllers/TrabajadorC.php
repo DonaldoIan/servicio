@@ -155,7 +155,7 @@ class TrabajadorC extends Controller
     // Insertar los datos en el modelo AsistenciaM
     $asistenciaM->insert($ga);
 
-    return redirect()->to(base_url('/menu'));
+    return redirect()->to(site_url('menu'))->with('mensaje', 'Asistencia tomada: ' . $nombre);
 }
 
 

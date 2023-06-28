@@ -177,6 +177,32 @@
   </div>
 
   <!-- Modal para tomar asistencia -->
+  <br>
+  <?php if(session('mensaje')){?>
+  <div class="modal fade" id="mensajeModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Mensaje</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <?= session('mensaje');?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('#mensajeModal').modal('show');
+    });
+  </script>
+  <?php } ?>  
   <div class="modal fade" id="modalParaAsistencias" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
