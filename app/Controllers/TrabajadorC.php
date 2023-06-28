@@ -39,12 +39,14 @@ class TrabajadorC extends Controller
     $otro = [
         'sede' => $this->request->getVar('sede')
     ];  
-
+    $nombreag = $this->request->getVar('nombre');
+    $apellidoag = $this->request->getVar('paterno');
     $Trabajador->insert($subir);
     $sede->insert($otro);
 
     // Redirigir y refrescar la página
-    return redirect()->to(site_url('menu'));
+    return redirect()->to(site_url('menu'))->with('mensaje', 'Trabajador agregado: ' . $nombreag . ' ' . $apellidoag);
+
 }
 
 
@@ -57,7 +59,7 @@ class TrabajadorC extends Controller
         $Usuario->where('id', $id)->delete($id);
         $sede->where('id', $id)->delete($id);
 
-        return $this->response->redirect(base_url('tusuarios'));
+        return redirect()->to(site_url('tusuarios'))->with('borrar', 'Usuario borrado');
     }
     public function editar($id=null){
 
@@ -97,12 +99,14 @@ class TrabajadorC extends Controller
         $otro = [
             'sede' => $this->request->getVar('sede')
         ];  
+        $nombreag =$this->request->getVar('nombre');
+        $apellidoag = $this->request->getVar('paterno');
 
         $usuarios->update($id, $subir); // Agrega el ID del trabajador y los datos a actualizar
         $sedeModel->update($id, $otro); // Agrega el ID de la sede y los datos a actualizar
 
 
-        return $this->response->redirect(base_url('/tusuarios'));
+        return redirect()->to(site_url('tusuarios'))->with('mensaje', 'Datos del trabajador actuazlidos: ' . $nombreag . ' ' . $apellidoag);
         
 }
 
