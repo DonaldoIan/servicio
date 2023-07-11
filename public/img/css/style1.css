@@ -1,0 +1,65 @@
+:root{
+    --tipografiaDisplay: ohm-bold, sans-serif;
+    --tipografiaFecha: input-serif, sans-serif;
+    --fontWeight: 700;
+    --fontStyle: normal;
+    --fontColor: #ffffff;
+}
+
+.section{
+    margin-top: 3rem; /* Ajusta el valor según tus necesidades */
+    margin-bottom: 0rem; /* Ajusta el valor según tus necesidades */
+}
+.d-flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body{
+    font-size: 8rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    font-family: var(--tipografiaDisplay);
+    font-weight: var(--fontWeight);
+    font-style: var(--fontStyle);
+    color: var(--fontColor);
+}
+.main{
+    width: 100vw;
+    height: 50vh;
+    flex-direction: column;
+}
+.container {
+    width: 50%; /* Ajusta el valor según tus necesidades */
+    border-radius: 2rem;
+    padding: 2rem;
+    background: rgb(72, 151, 255);
+    background: linear-gradient(100deg, #003b5c, #0078a8 30%, #0078a8 70%, #003b5c);
+    border: 1rem solid #003b5c;
+}
+
+.horas,
+.minutos,
+.meridiano, 
+.segundo{
+    margin-right: 2rem;
+}
+.segundo{
+    font-size: 6rem;
+    text-align: center;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+p{
+    text-align: center;
+    margin: 0;
+}
+.fecha{
+    font-family: var(--tipografiaFecha);
+    font-size: 5rem; /* Ajusta el valor según tus necesidades */
+    margin-bottom: -1rem; /* Ajusta el valor según tus necesidades */
+}
+.fecha p{
+    color: #003b5c;
+}
