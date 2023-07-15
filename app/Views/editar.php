@@ -85,7 +85,11 @@
         <p class="card-text">
             
             <form method="post" action="<?= site_url('/actualizar'); ?>" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?=$usuarios['id']?>"> 
+                <input type="hidden" name="id" value="<?=$usuarios['id']?>">
+            <div class="form-group">
+              <label for="trabajador">ID del Trabajador:</label>
+              <input id="trabajador" value="<?=$usuarios['id_trabajador']?>" class="form-control" type="text" name="trabajador" placeholder="ID Trabajador.">
+            </div> 
             <div class="form-group">
               <label for="nombre">Nombre(s):</label>
               <input id="nombre" value="<?=$usuarios['nombre']?>" class="form-control" type="text" name="nombre" placeholder="Nombre(s).">

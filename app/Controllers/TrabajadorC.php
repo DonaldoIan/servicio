@@ -20,6 +20,7 @@ class TrabajadorC extends Controller
         'nombre' => 'required',
         'paterno' => 'required',
         'materno' => 'required',
+        'trabajador' => 'required', 
         'sede' => 'required', 
     ]);
 
@@ -34,13 +35,15 @@ class TrabajadorC extends Controller
         'nombre' => $this->request->getVar('nombre'),
         'apellido_pat' => $this->request->getVar('paterno'),
         'apellido_mat' => $this->request->getVar('materno'),
-        'puesto' => $this->request->getVar('tema')
+        'puesto' => $this->request->getVar('tema'),
+        'id_trabajador' => $this->request->getVar('trabajador')
     ];    
     $otro = [
         'sede' => $this->request->getVar('sede')
     ];  
-    $nombreag = $this->request->getVar('nombre');
-    $apellidoag = $this->request->getVar('paterno');
+
+    $nombreag = $this->request->getVar('nombre');//se guarda en variable el nombre de la persona para mostrar en la alerta
+    $apellidoag = $this->request->getVar('paterno');//se guarda en variable el apellido de la persona para mostrar en la alerta
     $Trabajador->insert($subir);
     $sede->insert($otro);
 
@@ -81,7 +84,8 @@ class TrabajadorC extends Controller
         $validacion = $this->validate([
             'nombre'=>'required',
             'paterno'=>'required',
-            'materno'=>'required'
+            'materno'=>'required',
+            'trabajador'=>'required',
         ]);
         if(!$validacion){
             $session=session();
@@ -94,7 +98,8 @@ class TrabajadorC extends Controller
             'nombre' => $this->request->getVar('nombre'),
             'apellido_pat' => $this->request->getVar('paterno'),
             'apellido_mat' => $this->request->getVar('materno'),
-            'puesto' => $this->request->getVar('tema')
+            'puesto' => $this->request->getVar('tema'),
+            'id_trabajador' => $this->request->getVar('trabajador')
         ];    
         $otro = [
             'sede' => $this->request->getVar('sede')

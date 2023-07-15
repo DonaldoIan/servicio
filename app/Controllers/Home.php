@@ -19,6 +19,9 @@ class Home extends BaseController
     {
         $Trabajador = new TrabajadorM();
         $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
+        $datos['cabecera']= view('cabecera');
+        $datos['modalusuario']= view('modalusuario');
+
         return view('menu', $datos);
     }
     
@@ -41,6 +44,8 @@ class Home extends BaseController
 
         $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
         $datos['asistencias'] = $asistencia->orderBy('id', 'ASC')->findAll();
+        $datos['cabecera']= view('cabecera');
+        $datos['modalusuario']= view('modalusuario');
         
         return view('tasistencia', $datos);
     }
@@ -51,7 +56,8 @@ class Home extends BaseController
 
     $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
     $datos['sede'] = $sede->orderBy('id', 'ASC')->findAll();
-
+    $datos['cabecera']= view('cabecera');
+    $datos['modalusuario']= view('modalusuario');
 
     return view('tusuarios', $datos);
 }

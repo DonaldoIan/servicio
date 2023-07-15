@@ -8,7 +8,7 @@ class TrabajadorM extends Model
 {
     protected $table = 'trabajador';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nombre', 'apellido_pat', 'apellido_mat', 'puesto'];
+    protected $allowedFields = ['nombre', 'apellido_pat', 'apellido_mat', 'puesto', 'id_trabajador'];
 
     public function getNombreById($id)
     {
