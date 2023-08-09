@@ -38,9 +38,7 @@
                         <img src="<?=base_url('/public/img/assets');?>/images/imagen5-1.png" alt="" style="height: 4.4rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-primary display-5" href="index.html#top">BUAP</a></span>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                </div>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -49,8 +47,7 @@
                 </div>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-primary display-4"  data-toggle="modal" data-target="#modalParaEditar"> <span class="mbrib-contact-form mbr-iconfont mbr-iconfont-btn"></span>Registrar Trabajadores</a></li><li class="nav-item"><a class="nav-link link text-primary display-4" href="<?= base_url('tusuarios');?>" aria-expanded="false"><span class="mobi-mbri mobi-mbri-users mbr-iconfont mbr-iconfont-btn"></span>Usuarios Registrados</a></li><li class="nav-item"><a class="nav-link link text-primary display-4" data-toggle="modal" data-target="#modalParaAsistencias"><span class="mobi-mbri mobi-mbri-contact-form mbr-iconfont mbr-iconfont-btn"></span>Tomar Asistencia</a></li><li class="nav-item"><a class="nav-link link text-primary display-4" href="<?= base_url('tasistencia');?>" aria-expanded="false"><span class="mobi-mbri mobi-mbri-bulleted-list mbr-iconfont mbr-iconfont-btn"></span>Tabla de Asistencias</a></li></ul>
-
+                
                 <div class="navbar-buttons mbr-section-btn"><a class="btn btn-success display-4" href="index.html"><span class="mobi-mbri mobi-mbri-logout mbr-iconfont mbr-iconfont-btn"></span>Cerrar Sesión</a></div>
             </div>
         </div>
