@@ -29,7 +29,7 @@
 			<input type="password" name="password_user" placeholder="Contraseña" />
 			<br>
 			<a href="<?= base_url('menu');?>" class="nav-link btn btn-primary" type="button">Ingresar</a>
-
+			<button type="submit">Ingresar</button>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -55,3 +55,4 @@
 
 
 
+	
