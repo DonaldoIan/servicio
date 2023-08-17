@@ -32,10 +32,10 @@ class Home extends BaseController
         return $usuario;
     }
     
-    public function huella($id = null)
+    public function huella()
     {
-        $usuario = $this->obtenerUsuario($id);
-        return view('huella', ['usuario' => $usuario]);
+        
+        return view('huella',);
     }
     public function tasistencia(){
 
