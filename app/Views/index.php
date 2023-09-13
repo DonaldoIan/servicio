@@ -19,7 +19,33 @@
 	<div class="form-container sign-in-container">
 
 
-Quiero veeeer gaaaaa
-.i.
+		<form action="<?= base_url('menu');?>" method="post">
 
-Oyeeeee me atasque a la Odalis jsjsjsjsjsjsjsjsjs puta que rico cara de vergaaaaaa
+			<h1>INICIAR SESIÓN</h1><br>
+			<span>ESCRIBE TU CORREO Y CONTRASEÑA</span>
+      <span> PARA ACCEDER AL SISTEMA</span>
+			<br>
+			<input type="email" name="email" placeholder="Email" />
+			<input type="password" name="password_user" placeholder="Contraseña" />
+			<br>
+			<a href="<?= base_url('menu');?>" class="nav-link btn btn-primary" type="button">Ingresar</a>
+			<button type="submit">Ingresar</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+        <img src="<?=base_url('/public/img/escudologin.png');?>" width="300" height="300">
+        
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<script src="<?=base_url('/public/img/js/loginusuario.js');?>" ></script>
+
+</body>
+</html>
+
+
