@@ -1,10 +1,7 @@
 <?php 
-$base_url = "http://localhost/servicio/";
-$ruta_del_archivo = "/libraries/fpdf/fpdf.php";
-$archivo_completo = $base_url . $ruta_del_archivo;
 
-
-require($archivo_completo);
+$ruta_del_archivo = "/public/fpdf/fpdf.php";
+require($ruta_del_archivo);
 
 class PDF extends FPDF
 {

@@ -43,8 +43,7 @@ $routes->get('borrar/(:num)', 'TrabajadorC::borrar/$1');
 $routes->get('editar/(:num)', 'TrabajadorC::editar/$1');
 $routes->post('actualizar', 'TrabajadorC::actualizar');
 
-
-
+$routes->get('reporte', 'Home::reporte');
 
 /*
  * --------------------------------------------------------------------

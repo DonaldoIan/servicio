@@ -63,5 +63,11 @@ class Home extends BaseController
 }
 
 
+public function reporte()
+{
+    return view('reporte');
+}
+
+
     
 }
