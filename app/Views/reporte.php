@@ -1,7 +1,6 @@
 <?php 
 
-$ruta_del_archivo = "/public/fpdf/fpdf.php";
-require($ruta_del_archivo);
+require(APPPATH . 'libraries/fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
@@ -9,10 +8,10 @@ class PDF extends FPDF
 function Header()
 {
     $this->SetFont('Times','B',20);
-    $this->Image('img/triangulosrecortados.png',0,0,70); //imagen(archivo, png/jpg || x,y,tamaño)
+
     $this->setXY(60,15);
     $this->Cell(100,8,'Nombre del Reporte',0,1,'C',0);
-    $this->Image('img/shinheky.png',150,10,35); //imagen(archivo, png/jpg || x,y,tamaño)
+
     $this->Ln(40);
 }
 
