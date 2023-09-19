@@ -36,6 +36,7 @@ class TrabajadorC extends Controller
         'apellido_pat' => $this->request->getVar('paterno'),
         'apellido_mat' => $this->request->getVar('materno'),
         'puesto' => $this->request->getVar('tema'),
+        'viaticos' => $this->request->getVar('via'),
         'id_trabajador' => $this->request->getVar('trabajador')
     ];    
     $otro = [
@@ -99,6 +100,7 @@ class TrabajadorC extends Controller
             'apellido_pat' => $this->request->getVar('paterno'),
             'apellido_mat' => $this->request->getVar('materno'),
             'puesto' => $this->request->getVar('tema'),
+            'viaticos' => $this->request->getVar('via'),
             'id_trabajador' => $this->request->getVar('trabajador')
         ];    
         $otro = [

@@ -62,6 +62,13 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="via">Viáticos:</label>
+              <select id="via" class="form-control" name="via">
+                <option>Si</option>
+                <option>No</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="sede">Sede:</label>
               <select id="sede" class="form-control" name="sede">
                 <option>San José Chiapa</option>

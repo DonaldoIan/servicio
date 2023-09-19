@@ -102,6 +102,7 @@
               <label for="materno">Apellido Materno:</label>
               <input id="materno" value="<?=$usuarios['apellido_mat']?>" class="form-control" type="text" name="materno" placeholder="Apellido Materno.">
             </div>
+
             <div class="form-group">
   <label for="tema">Puesto:</label>
   <select id="tema" class="form-control" name="tema">
@@ -110,6 +111,14 @@
     <option <?php echo ($usuarios['puesto'] == 'Administrativo') ? 'selected' : ''; ?>>Administrativo</option>
     <option <?php echo ($usuarios['puesto'] == 'Intendencia') ? 'selected' : ''; ?>>Intendencia</option>
     <option <?php echo ($usuarios['puesto'] == 'Mantenimiento') ? 'selected' : ''; ?>>Mantenimiento</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="via">Puesto:</label>
+  <select id="via" class="form-control" name="via">
+    <option <?php echo ($usuarios['viaticos'] == 'Si') ? 'selected' : ''; ?>>Si</option>
+    <option <?php echo ($usuarios['viaticos'] == 'No') ? 'selected' : ''; ?>>No</option>
   </select>
 </div>
 

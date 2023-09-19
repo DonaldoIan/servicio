@@ -18,6 +18,7 @@
                                 <th>Trabajador</th>
                                 <th>Puesto</th>
                                 <th>Sede</th>
+                                <th>Viáticos</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -29,6 +30,7 @@
                                         <td><?= $lib['nombre']; ?> <?= $lib['apellido_pat']; ?> <?= $lib['apellido_mat']; ?></td>
                                         <td><?= $lib['puesto']; ?></td>
                                         <td><?= $sede[$index]['sede']; ?></td>
+                                        <td><?= $lib['viaticos']; ?></td>
                                         <td>
                                             <a href="<?= base_url('editar/'.$lib['id']); ?>" class="btn btn-info" type="button">Editar</a>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#modalParaBorrar<?= $lib['id']; ?>" style="margin-top: 5px;">Borrar</button>
