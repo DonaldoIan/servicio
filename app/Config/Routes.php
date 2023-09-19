@@ -45,6 +45,8 @@ $routes->post('actualizar', 'TrabajadorC::actualizar');
 
 $routes->get('reporte', 'Home::reporte');
 
+$routes->post('login', 'Home::login');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

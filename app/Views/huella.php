@@ -48,7 +48,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 
-                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-success display-4" href="index.html"><span class="mobi-mbri mobi-mbri-logout mbr-iconfont mbr-iconfont-btn"></span>Cerrar Sesión</a></div>
+                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-success display-4" <?= base_url('/');?>><span class="mobi-mbri mobi-mbri-logout mbr-iconfont mbr-iconfont-btn"></span>Cerrar Sesión</a></div>
             </div>
         </div>
     </nav>

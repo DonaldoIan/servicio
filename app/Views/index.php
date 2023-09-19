@@ -19,18 +19,19 @@
 	<div class="form-container sign-in-container">
 
 
-		<form action="<?= base_url('menu');?>" method="post">
+	<form action="<?= base_url('login');?>" method="post">
 
-			<h1>INICIAR SESIÓN</h1><br>
-			<span>ESCRIBE TU CORREO Y CONTRASEÑA</span>
-      <span> PARA ACCEDER AL SISTEMA</span>
-			<br>
-			<input type="email" name="email" placeholder="Email" />
-			<input type="password" name="password_user" placeholder="Contraseña" />
-			<br>
-			<a href="<?= base_url('menu');?>" class="nav-link btn btn-primary" type="button">Ingresar</a>
-			<button type="submit">Ingresar</button>
-		</form>
+<h1>INICIAR SESIÓN</h1><br>
+<span>ESCRIBE TU CORREO Y CONTRASEÑA</span>
+<span> PARA ACCEDER AL SISTEMA</span>
+<br>
+<input type="email" name="email" placeholder="Email" />
+<input type="password" name="password_user" placeholder="Contraseña" />
+<br>
+<button type="submit">Ingresar</button>
+
+</form>
+
 	</div>
 	<div class="overlay-container">
 		<div class="overlay">
