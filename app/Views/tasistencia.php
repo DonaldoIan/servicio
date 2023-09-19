@@ -10,6 +10,8 @@
                     <div class="form-group">
                         <label for="buscar">Buscador</label>
                         <input id="buscar" class="form-control" type="text" name="buscar" placeholder="Buscar trabajador" style="width: 50%;">
+                        <br>
+                        <input type="button" name="imprimir" value="Imprimir P&aacute;gina" onclick="window.print();">
                     </div>
                     <table class="table table-light">
                         <thead class="thead-light">

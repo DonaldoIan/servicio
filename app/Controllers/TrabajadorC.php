@@ -113,7 +113,7 @@ class TrabajadorC extends Controller
         $sedeModel->update($id, $otro); // Agrega el ID de la sede y los datos a actualizar
 
 
-        return redirect()->to(site_url('tusuarios'))->with('mensaje', 'Datos del trabajador actuazlidos: ' . $nombreag . ' ' . $apellidoag);
+        return redirect()->to(site_url('tusuarios'))->with('mensaje', 'Datos del trabajador actualizados: ' . $nombreag . ' ' . $apellidoag);
         
 }
 
