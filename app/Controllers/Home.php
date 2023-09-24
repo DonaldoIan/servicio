@@ -7,6 +7,10 @@ use App\Models\AsistenciaM;
 use App\Models\Sede;
 use App\Models\UsuarioM;
 use CodeIgniter\Controller;
+// Importar la clase FPDF
+use FPDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class Home extends BaseController
 {
@@ -49,65 +53,102 @@ class Home extends BaseController
         }
     }
 
-
-
-    
-
-
-    
     public function menu()
     {
         $Trabajador = new TrabajadorM();
         $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
-        $datos['cabecera']= view('cabecera');
-        $datos['modalusuario']= view('modalusuario');
+        $datos['cabecera'] = view('cabecera');
+        $datos['modalusuario'] = view('modalusuario');
 
         return view('menu', $datos);
     }
-    
+
     public function obtenerUsuario($id)
     {
         $usuarioM = new TrabajadorM();
         $usuario = $usuarioM->find($id);
         return $usuario;
     }
-    
+
     public function huella()
     {
-        
-        return view('huella',);
+        return view('huella');
     }
-    public function tasistencia(){
+
+    public function tasistencia()
+    {
 
         $Trabajador = new TrabajadorM();
         $asistencia = new AsistenciaM();
 
         $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
         $datos['asistencias'] = $asistencia->orderBy('id', 'ASC')->findAll();
-        $datos['cabecera']= view('cabecera');
-        $datos['modalusuario']= view('modalusuario');
-        
+        $datos['cabecera'] = view('cabecera');
+        $datos['modalusuario'] = view('modalusuario');
+
         return view('tasistencia', $datos);
     }
+
     public function tusuarios()
-{
-    $Trabajador = new TrabajadorM();
-    $sede = new Sede();
+    {
+        $Trabajador = new TrabajadorM();
+        $sede = new Sede();
 
-    $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
-    $datos['sede'] = $sede->orderBy('id', 'ASC')->findAll();
-    $datos['cabecera']= view('cabecera');
-    $datos['modalusuario']= view('modalusuario');
+        $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
+        $datos['sede'] = $sede->orderBy('id', 'ASC')->findAll();
+        $datos['cabecera'] = view('cabecera');
+        $datos['modalusuario'] = view('modalusuario');
 
-    return view('tusuarios', $datos);
-}
+        return view('tusuarios', $datos);
+    }
 
+    public function reporte()
+    {
+        // Crear opciones para Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
 
-public function reporte()
-{
-    return view('reporte');
-}
+        // Crear una instancia de Dompdf
+        $pdf = new Dompdf($options);
 
+        // Contenido HTML para el PDF
+        $html = '<html><body>';
+        $html .= '<h1>Reporte de lista de trabajadores</h1>';
+        $html .= '<table border="1" cellpadding="5">';
+        $html .= '<tr><th>Trabajador</th><th>Fecha</th><th>Hora</th><th>Sede</th><th>Huella</th></tr>';
 
+        // Obtener los datos de las asistencias
+        $asistenciaModel = new AsistenciaM();
+        $asistencias = $asistenciaModel->orderBy('id', 'ASC')->findAll();
+
+        foreach ($asistencias as $asistencia) {
+            $html .= '<tr>';
+            $html .= '<td>' . $asistencia['id_trabajador'] . '</td>';
+            $html .= '<td>' . $asistencia['fecha'] . '</td>';
+            $html .= '<td>' . $asistencia['hora'] . '</td>';
+            $html .= '<td>' . $asistencia['id_sede'] . '</td>';
+            $html .= '<td>' . $asistencia['id_huella'] . '</td>';
+            $html .= '</tr>';
+        }
+
+        $html .= '</table>';
+        $html .= '</body></html>';
+
+        // Cargar el contenido HTML en Dompdf
+        $pdf->loadHtml($html);
+
+        // Renderizar el PDF
+        $pdf->render();
+
+        // Configurar los encabezados y el tipo de contenido
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="reporte_trabajadores.pdf"');
+
+        // Enviar el PDF al navegador
+        $pdf->stream();
+    }
+    
+    
     
 }
