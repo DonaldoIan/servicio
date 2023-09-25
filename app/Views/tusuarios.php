@@ -10,6 +10,13 @@
                     <div class="form-group">
                         <label for="buscar">Buscar trabajador</label>
                         <input id="buscar" class="form-control" type="text" name="buscar" placeholder="Buscar trabajador" style="width: 50%;">
+
+                        <br>
+                        <span class="navbar-caption-wrap">
+                        <a class="navbar-caption text-primary display-5" href="<?= base_url('reporte'); ?>" style="display: inline-block; padding: 5px 10px; background-color: #fff; color: #000 !important; border: 1px solid #000; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">Reportes Usuario</a>
+                        <a class="navbar-caption text-primary display-5" href="<?= base_url('reporte'); ?>" style="display: inline-block; padding: 5px 10px; background-color: #fff; color: #000 !important; border: 1px solid #000; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">Reportes Viáticos</a>
+                        </span>
+
                     </div>
                     <table class="table table-light">
                         <thead class="thead-light">
