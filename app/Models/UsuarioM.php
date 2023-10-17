@@ -8,7 +8,7 @@ class UsuarioM extends Model
 {
     protected $table      = 'usuario';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id', 'usuario', 'contraseña', 'id_rol'];
+    protected $allowedFields = ['id', 'usuario', 'contraseña', 'id_rol', 'claveusuario', 'sede'];
 
     public function login_user($email, $password)
     {

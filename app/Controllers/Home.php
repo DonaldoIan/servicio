@@ -16,24 +16,79 @@ class Home extends BaseController
     protected $user_model;
     protected $session;
 
-    public function __construct()
-    {
-        $this->user_model = new UsuarioM();
-        $this->session = \Config\Services::session();
-    }
-
+    
     public function index()
     {
         return view('index');
     }
-
-    public function login()
+    public function superu()
     {
+        
+        $datos['modaladmin'] = view('modaladmin');
+        $datos['cabecerasuperu'] = view('cabecerasuperu');
+        
+        return view('superu', $datos);
+    }
+    public function usuariossu()
+    {
+        $Trabajador = new UsuarioM();
+        $datos['admin'] = $Trabajador->where('id_rol', 2)->findAll();
+        $datos['cabecerasuperu'] = view('cabecerasuperu');
+        $datos['modaladmin'] = view('modaladmin');
+        
+        return view('usuariossu', $datos);
+    }
+    
+    public function guardarsu()
+    {
+    $Trabajador = new UsuarioM();
+
+    $validacion = $this->validate([
+        'clave' => 'required',
+        'gmail' => 'required',
+        'contraseña' => 'required', 
+        'sede' => 'required', 
+    ]);
+    
+    if (!$validacion) {
+        $session = session();
+        $session->setFlashdata('sms', 'Todos los campos deben estar llenos.');
+        
+        return redirect()->back()->withInput();
+    }
+    
+    $subir = [
+        'claveusuario' => $this->request->getVar('clave'),
+        'usuario' => $this->request->getVar('gmail'),
+        'contraseña' => $this->request->getVar('contraseña'),
+        'sede' => $this->request->getVar('sede'),
+        'id_rol' => 2  
+    ];
+    
+    
+    
+    $nombreag = $this->request->getVar('claveusuario');//se guarda en variable el nombre de la persona para mostrar en la alerta
+    $apellidoag = $this->request->getVar('puesto');//se guarda en variable el apellido de la persona para mostrar en la alerta
+    $Trabajador->insert($subir);
+    
+    // Redirigir y refrescar la página
+    return redirect()->to(site_url('menu'))->with('mensaje', 'Trabajador agregado: ' . $nombreag . ' ' . $apellidoag);
+    
+}
+
+public function __construct()
+{
+    $this->user_model = new UsuarioM();
+    $this->session = \Config\Services::session();
+}
+
+public function login()
+{
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password_user');
-
+        
         $user = $this->user_model->login_user($email, $password);
-
+        
         if ($user) {
             $rol = $user['id_rol'];
 
@@ -42,6 +97,8 @@ class Home extends BaseController
                 return redirect()->to('menu');
             } else if ($rol == 2) {
                 return redirect()->to('huella');
+            }else if ($rol == 3) {
+                return redirect()->to('superu');
             } else {
                 $this->session->setFlashdata('error', 'El rol no existe');
                 return redirect()->to('/');

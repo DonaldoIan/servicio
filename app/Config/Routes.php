@@ -49,6 +49,12 @@ $routes->get('reporte_viaticos', 'Home::repviatico');
 
 $routes->post('login', 'Home::login');
 
+
+$routes->get('superu', 'Home::superu');
+$routes->get('usuariossu', 'Home::usuariossu');
+$routes->post('guardarsu', 'Home::guardarsu');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
