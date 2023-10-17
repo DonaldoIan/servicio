@@ -13,8 +13,7 @@
 
                         <br>
                         <span class="navbar-caption-wrap">
-                        <a class="navbar-caption text-primary display-5" href="<?= base_url('reporte'); ?>" style="display: inline-block; padding: 5px 10px; background-color: #fff; color: #000 !important; border: 1px solid #000; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">Reportes Usuario</a>
-                        <a class="navbar-caption text-primary display-5" href="<?= base_url('reporte'); ?>" style="display: inline-block; padding: 5px 10px; background-color: #fff; color: #000 !important; border: 1px solid #000; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">Reportes Viáticos</a>
+                        <a class="navbar-caption text-primary display-5" href="<?= base_url('reporte_usuario'); ?>" style="display: inline-block; padding: 5px 10px; background-color: #fff; color: #000 !important; border: 1px solid #000; text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.7" onmouseout="this.style.opacity=1">Reportes Usuario</a>
                         </span>
 
                     </div>

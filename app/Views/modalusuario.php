@@ -29,11 +29,11 @@
 
   <div class="modal fade" id="modalParaEditar" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Editar</h4>
-        </div>
-        <div class="modal-body">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar</h4>
+            </div>
+            <div class="modal-body">
           <form method="post" action="<?= site_url('/guardar'); ?>" enctype="multipart/form-data">
             <div class="form-group">
               <label for="nombre">Nombre(s):</label>
@@ -78,16 +78,14 @@
                 <option>Acajete</option>
               </select>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button class="btn btn-info" type="submit">Guardar</button>
-
             </div>
-          </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button class="btn btn-info ml-auto" type="submit">Guardar</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
   <script>

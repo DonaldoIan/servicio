@@ -44,6 +44,8 @@ $routes->get('editar/(:num)', 'TrabajadorC::editar/$1');
 $routes->post('actualizar', 'TrabajadorC::actualizar');
 
 $routes->get('reporte', 'Home::reporte');
+$routes->get('reporte_usuario', 'Home::repusuario');
+$routes->get('reporte_viaticos', 'Home::repviatico');
 
 $routes->post('login', 'Home::login');
 

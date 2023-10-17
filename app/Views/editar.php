@@ -133,9 +133,13 @@
   </select>
 </div>
 
-            <div class="modal-footer">
-            <a href="<?=base_url('tusuarios')?>" class="btn btn-danger" type="button">cancelar</a>
-              <button class="btn btn-info" type="submit" onclick="ocultarFormulario()">Guardar</button>
+<div class="modal-footer">
+    <a href="<?= base_url('tusuarios') ?>" class="btn btn-danger mx-2" type="button">Cancelar</a>
+    <button class="btn btn-info mx-2" type="submit" onclick="ocultarFormulario()">Guardar</button>
+</div>
+
+
+
             </div>
           </form>
       </p>

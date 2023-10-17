@@ -34,7 +34,7 @@
         <div class="container-fluid">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="index.html">
+                    <a href="<?=base_url('/menu');?>">
                         <img src="<?=base_url('/public/img/assets');?>/images/imagen5-1.png" alt="" style="height: 4.4rem;">
                     </a>
                 </span>

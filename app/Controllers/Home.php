@@ -7,20 +7,19 @@ use App\Models\AsistenciaM;
 use App\Models\Sede;
 use App\Models\UsuarioM;
 use CodeIgniter\Controller;
-// Importar la clase FPDF
 use FPDF;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
 class Home extends BaseController
 {
-    protected $user_model; // Agrega esta línea para definir la propiedad $user_model
-    protected $session; // Agrega esta línea para definir la propiedad $session
+    protected $user_model;
+    protected $session;
 
     public function __construct()
     {
-        $this->user_model = new UsuarioM(); // Carga el modelo UsuarioM
-        $this->session = \Config\Services::session(); // Carga la biblioteca de sesión
+        $this->user_model = new UsuarioM();
+        $this->session = \Config\Services::session();
     }
 
     public function index()
@@ -39,12 +38,12 @@ class Home extends BaseController
             $rol = $user['id_rol'];
 
             if ($rol == 1) {
-                $this->session->set('user', $user); // Usa set() en lugar de set_userdata()
+                $this->session->set('user', $user);
                 return redirect()->to('menu');
             } else if ($rol == 2) {
                 return redirect()->to('huella');
             } else {
-                $this->session->setFlashdata('error', 'El rol no existe'); // Usa setFlashdata() en lugar de set_flashdata()
+                $this->session->setFlashdata('error', 'El rol no existe');
                 return redirect()->to('/');
             }
         } else {
@@ -77,7 +76,6 @@ class Home extends BaseController
 
     public function tasistencia()
     {
-
         $Trabajador = new TrabajadorM();
         $asistencia = new AsistenciaM();
 
@@ -92,10 +90,10 @@ class Home extends BaseController
     public function tusuarios()
     {
         $Trabajador = new TrabajadorM();
-        $sede = new Sede();
+        $sedeModel = new Sede();
 
         $datos['trabajadores'] = $Trabajador->orderBy('id', 'ASC')->findAll();
-        $datos['sede'] = $sede->orderBy('id', 'ASC')->findAll();
+        $datos['sede'] = $sedeModel->orderBy('id', 'ASC')->findAll();
         $datos['cabecera'] = view('cabecera');
         $datos['modalusuario'] = view('modalusuario');
 
@@ -103,25 +101,17 @@ class Home extends BaseController
     }
 
     public function reporte()
-{
-    // Crear opciones para Dompdf
-    $options = new Options();
-    $options->set('isHtml5ParserEnabled', true);
-    $options->set('isPhpEnabled', true);
+    {
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
 
-    // Crear una instancia de Dompdf
-    $pdf = new Dompdf($options);
+        $pdf = new Dompdf($options);
 
-    // Contenido HTML para el PDF
-    $html = '<html><body>';
-    $html .= '<h1 style="text-align: center; color: #000080; font-weight: bold;">Reporte de asistencias de trabajadores</h1>';
+        $html = '<html><body>';
+        $html .= '<h1 style="text-align: center; color: #000080; font-weight: bold;">Reporte de asistencias de trabajadores</h1>';
 
-    // Agregar una imagen al reporte
-    $imageUrl = base_url('public/img/logo.png');
-    $html .= '<img src="' . $imageUrl . '" height="90" style="display: block; margin: 0 auto;" />';
-
-    // Estilos CSS para la tabla
-    $html .= '<style>
+        $html .= '<style>
                 table {
                     width: 100%;
                     border-collapse: collapse;
@@ -138,38 +128,154 @@ class Home extends BaseController
                 }
               </style>';
 
+        $html .= '<table>';
+        $html .= '<tr><th>Trabajador</th><th>Fecha</th><th>Hora</th><th>Sede</th><th>Huella</th></tr>';
+
+        $asistenciaModel = new AsistenciaM();
+        $asistencias = $asistenciaModel->orderBy('id', 'ASC')->findAll();
+
+        foreach ($asistencias as $asistencia) {
+            $html .= '<tr>';
+            $html .= '<td>' . $asistencia['id_trabajador'] . '</td>';
+            $html .= '<td>' . $asistencia['fecha'] . '</td>';
+            $html .= '<td>' . $asistencia['hora'] . '</td>';
+            $html .= '<td>' . $asistencia['id_sede'] . '</td>';
+            $html .= '<td>' . $asistencia['id_huella'] . '</td>';
+            $html .= '</tr>';
+        }
+
+        $html .= '</table>';
+        $html .= '</body></html>';
+
+        $pdf->loadHtml($html);
+        $pdf->render();
+
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="reporte_trabajadores.pdf"');
+        $pdf->stream();
+    }
+
+    public function repviatico()
+{
+    $options = new Options();
+    $options->set('isHtml5ParserEnabled', true);
+    $options->set('isPhpEnabled', true);
+
+    $pdf = new Dompdf($options);
+
+    $html = '<html><body>';
+    $html .= '<h1 style="text-align: center; color: #000080; font-weight: bold;">Reporte de asistencias de trabajadores</h1>';
+    $html .= '<h4 style="text-align: center; color: #000000; font-weight: bold;">Todos los trabajadores que aparecen en este reporte, RECIBEN viáticos</h4>';
+
+    $html .= '<style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th {
+                font-weight: bold;
+            }
+            th, td {
+                padding: 5px;
+                border: 1px solid #000;
+            }
+            th {
+                text-align: center;
+            }
+          </style>';
+
     $html .= '<table>';
     $html .= '<tr><th>Trabajador</th><th>Fecha</th><th>Hora</th><th>Sede</th><th>Huella</th></tr>';
 
-    // Obtener los datos de las asistencias
-    $asistenciaModel = new AsistenciaM();
-    $asistencias = $asistenciaModel->orderBy('id', 'ASC')->findAll();
+    // Consulta los trabajadores con viáticos "si" desde el modelo TrabajadorM
+    $trabajadorModel = new TrabajadorM();
+    $trabajadores = $trabajadorModel->where('viaticos', 'si')->findAll();
 
-    foreach ($asistencias as $asistencia) {
-        $html .= '<tr>';
-        $html .= '<td>' . $asistencia['id_trabajador'] . '</td>';
-        $html .= '<td>' . $asistencia['fecha'] . '</td>';
-        $html .= '<td>' . $asistencia['hora'] . '</td>';
-        $html .= '<td>' . $asistencia['id_sede'] . '</td>';
-        $html .= '<td>' . $asistencia['id_huella'] . '</td>';
-        $html .= '</tr>';
+    //$html .= '<pre>' . print_r($trabajadores, true) . '</pre>';
+
+    // Obtén las asistencias para los trabajadores con viáticos
+    $asistenciaModel = new AsistenciaM();
+    foreach ($trabajadores as $trabajador) {
+        $asistencias = $asistenciaModel->where('id_trabajador', $trabajador['nombre'])->findAll();
+        foreach ($asistencias as $asistencia) {
+            $html .= '<tr>';
+            $html .= '<td>' . $trabajador['nombre'] . '</td>';
+            $html .= '<td>' . $asistencia['fecha'] . '</td>';
+            $html .= '<td>' . $asistencia['hora'] . '</td>';
+            $html .= '<td>' . $asistencia['id_sede'] . '</td>';
+            $html .= '<td>' . $asistencia['id_huella'] . '</td>';
+            $html .= '</tr>';
+        }
     }
 
     $html .= '</table>';
     $html .= '</body></html>';
 
-    // Cargar el contenido HTML en Dompdf
     $pdf->loadHtml($html);
-
-    // Renderizar el PDF
     $pdf->render();
 
-    // Configurar los encabezados y el tipo de contenido
     header('Content-Type: application/pdf');
     header('Content-Disposition: inline; filename="reporte_trabajadores.pdf"');
-
-    // Enviar el PDF al navegador
     $pdf->stream();
 }
 
+
+    public function repusuario()
+    {
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+
+        $pdf = new Dompdf($options);
+
+        $html = '<html><body>';
+        $html .= '<h1 style="text-align: center; color: #000080; font-weight: bold;">Reporte de Usuarios Registrados</h1>';
+
+
+        $html .= '<style>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                th {
+                    font-weight: bold;
+                }
+                th, td {
+                    padding: 5px;
+                    border: 1px solid #000;
+                }
+                th {
+                    text-align: center;
+                }
+              </style>';
+
+        $html .= '<table>';
+        $html .= '<tr><th>ID_Trabajador</th><th>Nombre</th><th>Puesto</th><th>Viáticos</th></tr>';
+
+        $asistenciaModel = new TrabajadorM();
+        $asistencias = $asistenciaModel->orderBy('id', 'ASC')->findAll();
+        $sedeModel = new Sede();
+
+        foreach ($asistencias as $asistencia) {
+            $html .= '<tr>';
+            $html .= '<td>' . $asistencia['id_trabajador'] . '</td>';
+            $html .= '<td>' . $asistencia['nombre'] . ' ' . $asistencia['apellido_pat'] . '</td>';
+            $html .= '<td>' . $asistencia['puesto'] . '</td>';
+            $html .= '<td>' . $asistencia['viaticos'] . '</td>';
+            
+            
+            $html .= '</tr>';
+        }
+        
+
+        $html .= '</table>';
+        $html .= '</body></html>';
+
+        $pdf->loadHtml($html);
+        $pdf->render();
+
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="reporte_trabajadores.pdf"');
+        $pdf->stream();
+    }
 }
