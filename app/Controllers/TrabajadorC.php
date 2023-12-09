@@ -65,16 +65,14 @@ class TrabajadorC extends Controller
 
         return redirect()->to(site_url('tusuarios'))->with('borrar', 'Usuario borrado');
     }
-    public function editar($id=null){
+    public function editar($id_producto = null)
+{
+    $ep = new ProductoModel();
+    $datos['producto'] = $ep->where('id_producto', $id_producto)->first();
 
-        $usuarios = new TrabajadorM();
-        $sedeM = new Sede();
+    return view('ep', $datos);
+}
 
-        $datos['usuarios']=$usuarios->where('id',$id)->first();
-        $datos['sedeModel']=$sedeM->where('id',$id)->first();
-        
-        return view('editar', $datos);
-    }
     public function actualizar(){
 
         $usuarios = new TrabajadorM();
